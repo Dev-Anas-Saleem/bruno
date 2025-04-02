@@ -7,7 +7,7 @@ import { useCRM } from '@/lib/contexts/CRMContext';
 import Sidebar from '@/components/ui/Sidebar';
 
 interface Equipo {
-  id: string;
+  _id: string;
   nombre: string;
   members: string[];
 }
@@ -82,10 +82,10 @@ export default function MiEquipoPage() {
                   <div>
                     <p className="text-gray-900 font-medium">
                       {miembro.username}
-                      {miembro.id === user.id && ' (Tú)'}
+                      {miembro.id === user._id && ' (Tú)'}
                     </p>
                     <p className="text-gray-600 text-sm">
-                      {miembro.id === user.id ? 'Miembro del equipo (Tú)' : 'Compañero de equipo'}
+                      {miembro.id === user._id ? 'Miembro del equipo (Tú)' : 'Compañero de equipo'}
                     </p>
                   </div>
                 </div>
