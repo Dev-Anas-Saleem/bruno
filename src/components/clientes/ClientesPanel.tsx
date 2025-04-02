@@ -7,6 +7,7 @@ export default function ClientesPanel() {
   const { clientes, equipos, agregarCliente, agregarTarea, buscarClientePorNombre } = useCRM();
   const [modalAbierto, setModalAbierto] = useState(false);
   const [nuevoCliente, setNuevoCliente] = useState({
+    _id: '',
     nombre: '',
     telefono: '',
     direccion: '',
@@ -31,7 +32,7 @@ export default function ClientesPanel() {
       setClienteActual(nuevoCliente.nombre);
       setDescripcionTarea(nuevoCliente.necesidades);
       setMostrarFormularioTarea(true);
-      setNuevoCliente({ nombre: '', telefono: '', direccion: '', necesidades: '' });
+      setNuevoCliente({ _id: '', nombre: '', telefono: '', direccion: '', necesidades: '' });
     }
   };
 
@@ -40,7 +41,7 @@ export default function ClientesPanel() {
     if (!clienteActual) return;
 
     agregarTarea({
-      // _id: "",
+      _id: "",
       titulo: `Tarea para ${clienteActual}`,
       descripcion: descripcionTarea,
       equipoId: nuevaTarea.equipoId,

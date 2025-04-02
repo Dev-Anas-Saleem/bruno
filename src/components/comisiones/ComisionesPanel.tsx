@@ -10,7 +10,7 @@ export default function ComisionesPanel() {
   // Obtener tareas completadas y calcular comisiones
   const obtenerTareasCompletadas = (empleadoId: string) => {
     return tareas.filter(tarea => {
-      const equipo = equipos.find(eq => eq.id === tarea.equipoId);
+      const equipo = equipos.find(eq => eq._id === tarea.equipoId);
       return equipo?.members.includes(empleadoId) && tarea.estado === 'completada';
     });
   };
@@ -32,12 +32,12 @@ export default function ComisionesPanel() {
       
       <div className="grid gap-6">
         {empleadosRegistrados.map(empleado => {
-          const empleadoInfo = empleados.find(emp => emp.id === empleado.id);
-          const tareasCompletadas = obtenerTareasCompletadas(empleado.id);
+          const empleadoInfo = empleados.find(emp => emp._id === empleado._id);
+          const tareasCompletadas = obtenerTareasCompletadas(empleado._id);
           const comisionActual = empleadoInfo?.comision || 0;
           
           return (
-            <div key={empleado.id} className="bg-white rounded-lg shadow-sm p-6">
+            <div key={empleado._id} className="bg-white rounded-lg shadow-sm p-6">
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900">{empleado.username}</h3>
@@ -67,7 +67,7 @@ export default function ComisionesPanel() {
                           const comision = calcularComisionTotal(montoCobrado);
                           const total = calcularMontoTotal(montoCobrado);
                           return (
-                            <tr key={tarea.id}>
+                            <tr key={tarea._id}>
                               <td className="px-4 py-3 text-sm text-gray-900">{tarea.titulo}</td>
                               <td className="px-4 py-3 text-sm text-gray-500">
                                 {new Date(tarea.fecha).toLocaleDateString()}

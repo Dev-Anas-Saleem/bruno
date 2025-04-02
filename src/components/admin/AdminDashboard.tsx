@@ -15,7 +15,7 @@ interface Cliente {
 }
 
 interface Tarea {
-  id: string;
+  _id: string;
   titulo: string;
   descripcion: string;
   estado: 'pendiente' | 'completada' | 'vencida';
@@ -112,7 +112,7 @@ export default function AdminDashboard() {
           <h2 className="text-xl font-bold text-gray-900 mb-4">Empleados Conectados</h2>
           <div className="space-y-4">
             {empleadosConectados.map((empleado) => (
-              <div key={empleado.id} className="flex items-center justify-between">
+              <div key={empleado._id} className="flex items-center justify-between">
                 <div className="flex items-center">
                   <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
                     <span className="text-blue-600 font-medium">
@@ -137,7 +137,7 @@ export default function AdminDashboard() {
           <h2 className="text-xl font-bold text-gray-900 mb-4">Tareas Recientes</h2>
           <div className="space-y-4">
             {tareas.slice(0, 5).map((tarea: Tarea) => (
-              <div key={tarea.id} className="flex items-center justify-between">
+              <div key={tarea._id} className="flex items-center justify-between">
                 <div className="flex items-center">
                   <span className={`h-2 w-2 rounded-full ${
                     tarea.estado === 'completada' ? 'bg-green-400' :

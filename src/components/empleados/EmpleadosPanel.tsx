@@ -17,7 +17,7 @@ export default function EmpleadosPanel() {
 
   const getEquipoNombre = (equipoId?: string) => {
     if (!equipoId) return 'Sin equipo';
-    const equipo = equipos.find(e => e.id === equipoId);
+    const equipo = equipos.find(e => e._id === equipoId);
     return equipo ? equipo.nombre : 'Sin equipo';
   };
 
@@ -49,7 +49,7 @@ export default function EmpleadosPanel() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {empleadosRegistrados.map((empleado) => (
-                <tr key={empleado.id} className="hover:bg-gray-50">
+                <tr key={empleado._id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="h-10 w-10 flex-shrink-0">
@@ -81,10 +81,10 @@ export default function EmpleadosPanel() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    {showConfirmDelete === empleado.id ? (
+                    {showConfirmDelete === empleado._id ? (
                       <div className="flex items-center space-x-2">
                         <button
-                          onClick={() => handleEliminarEmpleado(empleado.id)}
+                          onClick={() => handleEliminarEmpleado(empleado._id)}
                           className="text-white bg-[#E31E24] hover:bg-[#C41A1F] px-3 py-1 rounded-md transition-colors duration-200"
                         >
                           Confirmar
@@ -98,7 +98,7 @@ export default function EmpleadosPanel() {
                       </div>
                     ) : (
                       <button
-                        onClick={() => setShowConfirmDelete(empleado.id)}
+                        onClick={() => setShowConfirmDelete(empleado._id)}
                         className="text-[#E31E24] hover:text-[#C41A1F] font-medium transition-colors duration-200"
                       >
                         Eliminar

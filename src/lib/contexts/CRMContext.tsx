@@ -166,10 +166,11 @@ export function CRMProvider({ children }: { children: ReactNode }) {
 
   const agregarEquipo = async (equipo: Omit<Equipo, 'id' | 'fechaCreacion' | 'ultimaModificacion'>) => {
     try {
+      const { _id, ...bodyData } = equipo
       const response = await fetch('/api/crm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'equipo', data: equipo })
+        body: JSON.stringify({ model: 'equipo', data: bodyData })
       });
       if (response.ok) {
         const { result: nuevoEquipo } = await response.json();
@@ -185,10 +186,11 @@ export function CRMProvider({ children }: { children: ReactNode }) {
     try {
       // Set defaults for estado and observaciones.
       const bodyData = { ...tarea, estado: 'pendiente', observaciones: '' };
+      const { _id, ...updatedBodyData } = bodyData
       const response = await fetch('/api/crm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'tarea', data: bodyData })
+        body: JSON.stringify({ model: 'tarea', data: updatedBodyData })
       });
       if (response.ok) {
         const { result: nuevaTarea } = await response.json();
