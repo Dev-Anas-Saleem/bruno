@@ -16,6 +16,7 @@ export default function EquiposPanel() {
 
   const [mostrarFormularioEquipo, setMostrarFormularioEquipo] = useState(false);
   const [nuevoEquipo, setNuevoEquipo] = useState({
+    _id: "",
     nombre: '',
     color: '#000000',
     members: [] as string[]

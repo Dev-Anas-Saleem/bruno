@@ -30,7 +30,7 @@ export default function TareasPanel({ empleadoId }: TareasPanelProps) {
   // Filtrar tareas según el rol y el ID del empleado
   const tareasFiltradas = empleadoId
     ? tareas.filter(tarea => {
-        const equipo = equipos.find(eq => eq.id === tarea.equipoId);
+        const equipo = equipos.find(eq => eq._id === tarea.equipoId);
         return equipo?.members?.includes(empleadoId);
       })
     : tareas;
@@ -55,7 +55,7 @@ export default function TareasPanel({ empleadoId }: TareasPanelProps) {
           if (fechaTarea < new Date(ahora.setHours(0, 0, 0, 0))) {
             const nuevaFecha = new Date(fechaTarea);
             nuevaFecha.setDate(nuevaFecha.getDate() + 1);
-            actualizarTarea(tarea.id, {
+            actualizarTarea(tarea._id, {
               ...tarea,
               fecha: nuevaFecha.toISOString()
             });
@@ -97,21 +97,21 @@ export default function TareasPanel({ empleadoId }: TareasPanelProps) {
     return dias;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    agregarTarea({
-      titulo,
-      descripcion,
-      equipoId: equipoSeleccionado,
-      comision: comision,
-      fecha: fechaSeleccionada.toISOString()
-    });
-    setTitulo('');
-    setDescripcion('');
-    setComision(0);
-    setEquipoSeleccionado('');
-    setMostrarFormulario(false);
-  };
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   agregarTarea({
+  //     titulo,
+  //     descripcion,
+  //     equipoId: equipoSeleccionado,
+  //     comision: comision,
+  //     fecha: fechaSeleccionada.toISOString()
+  //   });
+  //   setTitulo('');
+  //   setDescripcion('');
+  //   setComision(0);
+  //   setEquipoSeleccionado('');
+  //   setMostrarFormulario(false);
+  // };
 
   const handleCompletarTarea = (tareaId: string) => {
     const monto = montoCobrado[tareaId];
